@@ -3,7 +3,7 @@ width = 22;
 
 bar_offset = [-54.8, -26, 0];
 
-include <bolts.scad>;
+use <bolts.scad>;
 
 module ugrip(height=6) {
 	cylinder(d=22, h=height);

@@ -1,7 +1,7 @@
 
 $fs = 0.01;
 
-include <bolts.scad>;
+use <bolts.scad>;
 
 module support() {
 	translate([3, 0, 1]) rotate(90, [0, -1, 0]) linear_extrude(height=8, scale=[1, 2.5]) square([6, 5], center=true);
@@ -18,7 +18,7 @@ skew = [[2, 0, -1.8, 0],
         [0, 0, 1, 0],
         [0, 0, 0, 1]]; 
 
-difference() {
+render() difference() {
 	union() {
 		color("green") translate([0, 0, base_thickness/2]) difference() {
 			cube([54, 42, base_thickness], center=true);
@@ -52,7 +52,7 @@ difference() {
 		for(i = support_rotations) {
 			rotate(i, [0, 0, 1]) {
 				translate([3, 0, 11]) {
-					rotate(90, [0,0,1]) rotate(90, [1,0,0]) bolt(depth=10, nut_offset=2, inset=0);
+					rotate(90, [0,0,1]) rotate(90, [1,0,0]) bolted_hole(depth=10, nut_offset=2, inset=0);
 				}
 			}
 		}
@@ -61,9 +61,9 @@ difference() {
 	// 6 holes around outside
 	for(i = [90:180:360]) {
 		rotate(i, [0, 0, 1]) {
-			translate([14, -22, 4]) rotate(90, [0,0,1]) rotate(90, [1,0,0]) bolt();
-			translate([14, 0, 4]) rotate(90, [0,0,1]) rotate(90, [1,0,0]) bolt();
-			translate([14, 22, 4]) rotate(90, [0,0,1]) rotate(90, [1,0,0]) bolt();
+			translate([14, -22, 4]) rotate(90, [0,0,1]) rotate(90, [1,0,0]) bolted_hole();
+			translate([14, 0, 4]) rotate(90, [0,0,1]) rotate(90, [1,0,0]) bolted_hole();
+			translate([14, 22, 4]) rotate(90, [0,0,1]) rotate(90, [1,0,0]) bolted_hole();
 		}
 	}
 }
